@@ -74,14 +74,25 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 
 # Set git pager to less with options for better readability in terminal
 RUN git config --global core.pager 'less -FRX'
-RUN git config --global user.email "rnswo42b@gmail.com"
-RUN git config --global user.name "Gunjae Yoon"
 
 # Working directory (mount your code here from host)
 WORKDIR /root/workspace
 
 # Use zsh as default shell
 SHELL ["/bin/zsh", "-c"]
+
+# Create entrypoint script to configure git from environment variables
+RUN echo '#!/bin/zsh' > /entrypoint.sh && \
+    echo 'if [ -n "$GIT_USER_EMAIL" ]; then' >> /entrypoint.sh && \
+    echo '  git config --global user.email "$GIT_USER_EMAIL"' >> /entrypoint.sh && \
+    echo 'fi' >> /entrypoint.sh && \
+    echo 'if [ -n "$GIT_USER_NAME" ]; then' >> /entrypoint.sh && \
+    echo '  git config --global user.name "$GIT_USER_NAME"' >> /entrypoint.sh && \
+    echo 'fi' >> /entrypoint.sh && \
+    echo 'exec "$@"' >> /entrypoint.sh && \
+    chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 # Start interactive zsh as root
 CMD ["zsh"]
