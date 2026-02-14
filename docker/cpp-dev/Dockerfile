@@ -14,7 +14,7 @@ RUN apt-get update -qq && \
         ca-certificates \
         curl \
         git \
-    && apt-get clean && \
+    && apt-get clean &"& \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /var/tmp/*
 
 # ───────────────────────────────────────────────
@@ -70,6 +70,9 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     echo 'plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions)' >> $HOME/.zshrc && \
     echo 'POWERLEVEL9K_MODE=nerdfont-complete' >> $HOME/.zshrc && \
     echo '[[ ! -f ~/.p10k.zsh ]] && echo "Run » p10k configure « to customize the prompt"' >> $HOME/.zshrc
+
+# Set git pager to less with options for better readability in terminal
+RUN git config --global core.pager 'less -FRX'
 
 # Working directory (mount your code here from host)
 WORKDIR /root/workspace
