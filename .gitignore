@@ -1,0 +1,108 @@
+# ───────────────────────────────────────────────
+# Linux temporary files / system generated files
+# ───────────────────────────────────────────────
+
+# Temporary files
+*~
+.~*
+*.swp
+*.swo
+*.swn
+*.bak
+*.backup
+*.old
+*.orig
+*.rej
+
+# Common editors & tools temporary files
+.vscode/
+.idea/
+*.code-workspace
+
+# Linux / Unix style temporaries
+Thumbs.db
+Desktop.ini
+.DS_Store          # (macOS — often appears when shared drives are used)
+
+# Trash / deleted files
+.Trash-*/
+.Trash/
+.Trashes/
+
+# Temporary build / compile artifacts (very common on Linux)
+*.o
+*.obj
+*.lo
+*.la
+*.a
+*.so
+*.so.*
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# meson / ninja / cmake common temp locations
+build/
+build-*/
+_build/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CPackConfig.cmake
+_CPack_Packages/
+Testing/
+Makefile.in
+*.cmake
+
+# Package manager caches & temporary downloads
+pip/
+pip-cache/
+.cache/pip/
+.npm/
+yarn-cache/
+pnpm-store/
+.bundle/
+vendor/
+
+# Common dist / packaging folders
+dist/
+*.egg-info/
+*.eggs/
+*.deb
+*.rpm
+*.snap
+*.AppImage
+
+# Logs & crash reports
+*.log
+*.logs/
+crashreports/
+core
+core.*
+vgcore.*
+*.core
+heaptrack.*
+callgrind.out.*
+
+# System / session temporaries
+/tmp/*
+/var/tmp/*
+/var/cache/*
+/var/log/journal/*
+/run/user/*/*
+/dev/shm/*
+
+# Fontconfig / thumbnail caches
+.fontconfig/
+.thumbnails/
+.xsession-errors
+.xsession-errors.old
+ICEauthority
+.Xauthority
+.lesshst
+.bash_history
+.zsh_history
+.node_repl_history
+.python_history
+.wget-hsts
