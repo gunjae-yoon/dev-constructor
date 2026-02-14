@@ -68,7 +68,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     git clone --depth=1 https://github.com/zsh-users/zsh-completions \
         ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-completions && \
     sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/' $HOME/.zshrc && \
-    echo 'plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions)' >> $HOME/.zshrc && \
+    sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions)/' $HOME/.zshrc && \
     echo 'POWERLEVEL9K_MODE=nerdfont-complete' >> $HOME/.zshrc && \
     echo '[[ ! -f ~/.p10k.zsh ]] && echo "Run » p10k configure « to customize the prompt"' >> $HOME/.zshrc
 
