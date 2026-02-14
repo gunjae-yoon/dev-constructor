@@ -74,6 +74,8 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 
 # Set git pager to less with options for better readability in terminal
 RUN git config --global core.pager 'less -FRX'
+RUN git config --global user.email "rnswo42b@gmail.com"
+RUN git config --global user.name "Gunjae Yoon"
 
 # Working directory (mount your code here from host)
 WORKDIR /root/workspace
