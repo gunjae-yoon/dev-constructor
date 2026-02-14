@@ -14,8 +14,8 @@ RUN apt-get update -qq && \
         ca-certificates \
         curl \
         git \
-        ssh \
-    && apt-get clean &"& \
+        ssh && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /var/tmp/*
 
 # ───────────────────────────────────────────────
