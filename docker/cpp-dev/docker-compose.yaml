@@ -1,0 +1,28 @@
+version: "3.9"
+
+x-log:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "100m"
+    max-file: "5"
+
+services:
+  cpp-dev:
+    image: cpp-dev:latest
+    container_name: cpp-dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    logging: *default-logging
+    volumes:
+      - ${HOME}/workspace:/root/workspace
+      - /dev:/dev
+      - ${SSH_AUTH_SOCK}:/ssh-agent
+    environment:
+      - SSH_AUTH_SOCK=/ssh-agent
+    working_dir: /root/workspace
+    network_mode: host
+    tty: true
+    stdin_open: true
+    privileged: true
