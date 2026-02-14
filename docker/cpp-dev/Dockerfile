@@ -52,8 +52,15 @@ RUN apt-get update -qq && \
         doxygen \
         graphviz \
         sudo \
+        python3 \
+        python3-pip \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /var/tmp/*
+
+# ───────────────────────────────────────────────
+# Install cmake-format via pip
+# ───────────────────────────────────────────────
+RUN pip3 install --no-cache-dir cmake-format
 
 # ───────────────────────────────────────────────
 # Oh My Zsh + Powerlevel10k + useful plugins
