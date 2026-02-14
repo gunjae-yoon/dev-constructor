@@ -54,6 +54,7 @@ RUN apt-get update -qq && \
         sudo \
         python3 \
         python3-pip \
+        software-properties-common \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /var/tmp/*
 
@@ -61,6 +62,25 @@ RUN apt-get update -qq && \
 # Install cmake-format via pip
 # ───────────────────────────────────────────────
 RUN pip3 install --no-cache-dir cmake-format
+
+# ───────────────────────────────────────────────
+# Install GCC-11/G++-11 and GCC-13/G++-13, set GCC-13 as default
+# ───────────────────────────────────────────────
+RUN add-apt-repository ppa:ubuntu-toolchain-r/test -y && \
+    apt-get update -qq && \
+    apt-get install -y --no-install-recommends \
+        gcc-11 \
+        g++-11 \
+        gcc-13 \
+        g++-13 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 90 \
+        --slave /usr/bin/g++ g++ /usr/bin/g++-11 \
+        --slave /usr/bin/gcov gcov /usr/bin/gcov-11 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100 \
+        --slave /usr/bin/g++ g++ /usr/bin/g++-13 \
+        --slave /usr/bin/gcov gcov /usr/bin/gcov-13 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /var/tmp/*
 
 # ───────────────────────────────────────────────
 # Oh My Zsh + Powerlevel10k + useful plugins
